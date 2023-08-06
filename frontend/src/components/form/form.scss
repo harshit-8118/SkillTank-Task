@@ -20,6 +20,18 @@
                 border-radius: 5px;
                 margin-right: 5px;
             }
+            span{
+                position: relative;
+                &::after{
+                    content: '';
+                    position: absolute;
+                    width: 50px;
+                    height: 2px;
+                    background-color: darkblue;
+                    bottom: -5px;
+                    left: 0;
+                }
+            }
         }
     }
     .form-input{
