@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../authContext/AuthContext";
 import "./login.scss";
 
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../../App";
 import { LoginUser } from "../../authContext/apiCalls";
@@ -12,7 +12,7 @@ function Login() {
   const [Lemail, setEmail] = useState();
   const [Lpassword, setPassword] = useState();
 
-  const { dispatch } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
 
   const [Remail, setREmail] = useState("");
   const [Rpassword, setRPassword] = useState("");
@@ -41,6 +41,11 @@ function Login() {
     LoginUser({ email, password }, dispatch);
   };
 
+  useEffect(() => {
+    if(user){
+      navigate('/')
+    }
+  })
   return (
     <div className="login-signup-page">
       <div className="login-signup-form">

@@ -113,20 +113,30 @@
   }
   .navbar-login-signup {
     border: none;
-    color: rgb(99, 99, 99);
-    padding: 5px;
     background: transparent;
     align-self: center;
     height: 30px;
     position: relative;
     font-size: 14px;
     cursor: pointer;
+    p{
+      font-size: 12px;
+      cursor: pointer;
+      background: linear-gradient(
+        to right,
+        rgb(250, 37, 250),
+        rgb(254, 95, 122)
+      );
+      padding: 10px;
+      border-radius: 10px;
+      color: white;
+    }
     .login-signup-dropdown {
       display: flex;
       justify-content: start;
       flex-direction: column;
       position: absolute;
-      top: 25px;
+      top: 30px;
       left: 5px;
       a {
         align-self: self-start;
@@ -139,6 +149,38 @@
           }
         }
       }
+    }
+  }
+  .user-img {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0 10px;
+    &-cont{
+      display: flex;
+      align-items: center;
+      img {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+      }
+    }
+      span {
+      position: absolute;
+      top: 40px;
+      left: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      background: linear-gradient(
+        to right,
+        rgb(250, 37, 250),
+        rgb(254, 95, 122)
+      );
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: white;
     }
   }
 }

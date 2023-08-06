@@ -3,7 +3,6 @@ import "./landing.scss";
 import React from "react";
 import {
   faCompactDisc,
-  faArrowDown,
   faCaretDown,
   faComment,
   faShare,
