@@ -1,0 +1,137 @@
+.login-signup-page {
+  background: linear-gradient(to right, rgb(250, 37, 250), rgb(254, 95, 122));
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  min-width: 900px;
+  .login-signup-form {
+    background-color: white;
+    width: 350px;
+    position: absolute;
+    border-radius: 10px;
+    top: 80px;
+    left: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .btns {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      .login-btn {
+        border: 1px solid gray;
+        width: 50%;
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        background: transparent;
+        cursor: pointer;
+      }
+      .signup-btn {
+        border: 1px solid rgb(182, 181, 181);
+        width: 50%;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 4px;
+        padding: 10px;
+        background: transparent;
+        cursor: pointer;
+      }
+      .clicked-btn {
+        background: linear-gradient(
+          to right,
+          rgb(250, 37, 250),
+          rgb(254, 95, 122)
+        );
+      }
+    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      input {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        &:focus {
+          outline: 1px solid lightgray;
+        }
+      }
+      .forgot {
+        color: rgb(250, 54, 175);
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+      .login-submit-btn {
+        border: 1px solid gray;
+        border-radius: 4px;
+        padding: 10px;
+        background: transparent;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        background: linear-gradient(
+          to right,
+          rgb(250, 37, 250),
+          rgb(254, 95, 122)
+        );
+        margin-bottom: 20px;
+      }
+      .not-member{
+          margin-bottom: 10px;
+          text-align: center;
+        i{
+            color: rgb(250, 54, 175);
+            font-style: normal;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+      }
+    }
+  }
+  .signup-form{
+    display: flex;
+      flex-direction: column;
+      input {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        &:focus {
+          outline: 1px solid lightgray;
+        }
+      }
+      .signup-submit-btn {
+        border: 1px solid gray;
+        border-radius: 4px;
+        padding: 10px;
+        background: transparent;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        background: linear-gradient(
+          to right,
+          rgb(250, 37, 250),
+          rgb(254, 95, 122)
+        );
+        margin-bottom: 20px;
+      }
+      .not-member{
+          margin-bottom: 10px;
+          text-align: center;
+        i{
+            color: rgb(250, 54, 175);
+            font-style: normal;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+      }
+  }
+}
