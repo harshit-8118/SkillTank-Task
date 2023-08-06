@@ -18,7 +18,7 @@ Steps to use:
 - Clone GitHub repository using `git clone https:github.com/harshit-8118/SkillTank-Task` 
 command
 or
-- fork and clone using same command in terminal.
-- Move to `frontend` directory.
-- Install dependencies and modules with `npm install` command.
-- Run program using `npm start` on your local-machine.
+• fork and clone using same command in terminal.
+• Move to `frontend` directory.
+• Install dependencies and modules with `npm install` command.
+• Run program using `npm start` on your local-machine.
