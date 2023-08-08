@@ -41,17 +41,15 @@ function Login() {
           email,
           password,
         })
-        .then((res) => {
-          if (res.data) {
-            setMessage("registration successfull")
-            setIsClicked(false);
-            setLogin(true);
-          }
-        })
+        .then((res) => {})
         .catch((err) => {
           setMessage("validate input fields...");
           setIsClicked(false);
+          return;
         });
+        setMessage("registration successfull")
+        setIsClicked(false);
+        setLogin(true);
     } catch (err) {setMessage("failed to save! try again")}
   };
 
