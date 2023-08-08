@@ -6,12 +6,15 @@ import axios from "axios";
 import { baseUrl } from "../../App";
 import { AuthContextCompany } from "../../authCompany/AuthContextCompany";
 import { LoginOrganisation } from "../../authCompany/apiCallsCompany";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 function LoginCompany() {
   const [login, setLogin] = useState(true);
   const [Lemail, setEmail] = useState();
   const [Lpassword, setPassword] = useState();
+  const [isClicked, setIsClicked] = useState(false);
+  const [message, setMessage] = useState("");
 
   const { company, dispatch } = useContext(AuthContextCompany);
 
@@ -26,42 +29,95 @@ function LoginCompany() {
     let companyname = Rusername;
     let companypassword = Rpassword;
     let companyemail = Remail;
-    let companyspecialisation = RSpecialisation
+    let companyspecialisation = RSpecialisation;
+    if (
+      !companyname ||
+      !companypassword ||
+      !companyemail ||
+      !companyspecialisation
+    ) {
+      setIsClicked(false);
+      setMessage("inputs can't be empty");
+      return;
+    }
+    setIsClicked(true);
     try {
-      await axios.post(baseUrl + "company/register", {
-        companyname,
-        companyemail,
-        companypassword,
-        companyspecialisation
-      });
-      setLogin(true)
-    } catch (err) {}
+      await axios
+        .post(baseUrl + "company/register", {
+          companyname,
+          companyemail,
+          companypassword,
+          companyspecialisation,
+        })
+        .then((res) => {
+          if (res.data) {
+            setMessage("registration successfull");
+            setIsClicked(false);
+            setLogin(true);
+          }
+        })
+        .catch((err) => {
+          setMessage("validate input fields...");
+          setIsClicked(false);
+        });
+    } catch (err) {
+      setMessage("failed to save! try again");
+    }
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
     let companyemail = Lemail;
     let companypassword = Lpassword;
+    if (!companyemail || !companypassword) {
+      setMessage("inputs can't be empty");
+      setIsClicked(false);
+      return;
+    }
+    setIsClicked(true);
     LoginOrganisation({ companyemail, companypassword }, dispatch);
   };
 
   useEffect(() => {
-    if(company){
-      navigate('/')
+    const func = () => {
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    };
+    func();
+    if (company) {
+      setIsClicked(false);
+      setMessage("login successfull");
+      navigate("/");
     }
-  })
+  }, [company, message, isClicked]);
   return (
     <div className="loginC-signup-page">
       <div className="loginC-signup-form">
+        <span className={message?"message":""}>
+            {message}
+        </span>
         <h3>Organisation</h3>
-        <h1>{login ? 'Login' : 'Signup'} Form</h1>
+        <h1>{login ? "Login" : "Signup"} Form</h1>
         <div className="btns">
-        <button className={login ? 'loginC-btn clicked-btn': "loginC-btn"} onClick={() => {setLogin(true)}}>
-          Login
-        </button>
-        <button className={login ? 'signup-btn ': "clicked-btn signup-btn"} onClick={() =>{setLogin(false)}}>
-          Signup
-        </button>
+          <button
+            className={login ? "loginC-btn clicked-btn" : "loginC-btn"}
+            onClick={() => {
+              setIsClicked(false);
+              setLogin(true);
+            }}
+          >
+            Login
+          </button>
+          <button
+            className={login ? "signup-btn " : "clicked-btn signup-btn"}
+            onClick={() => {
+              setIsClicked(false);
+              setLogin(false);
+            }}
+          >
+            Signup
+          </button>
         </div>
         {login ? (
           <div className="loginC-form">
@@ -77,26 +133,33 @@ function LoginCompany() {
             />
             <span className="forgot">forgot password?</span>
             <button className="loginC-submit-btn" onClick={handleLogin}>
-              Login
+            {isClicked ? <FontAwesomeIcon icon={faSpinner} spin /> : null}{" "} Login
             </button>
             <span className="not-member">
               not registered?
-              <i onClick={() =>{setLogin(false);}}>Register now</i>{" "}
+              <i
+                onClick={() => {
+                  setIsClicked(false);
+                  setLogin(false);
+                }}
+              >
+                Register now
+              </i>{" "}
             </span>
           </div>
         ) : (
           <form className="signup-form">
-             <input
+            <input
               type="text"
               placeholder="organisation name"
               onChange={(e) => setRUsername(e.target.value)}
             />
-             <input
+            <input
               type="email"
               placeholder="organisation mail"
               onChange={(e) => setREmail(e.target.value)}
             />
-             <input
+            <input
               type="text"
               placeholder="organisation specialisation"
               onChange={(e) => setRSpecialisation(e.target.value)}
@@ -106,9 +169,19 @@ function LoginCompany() {
               placeholder="password"
               onChange={(e) => setRPassword(e.target.value)}
             />
-            <button className="signup-submit-btn" onClick={handleFinish}>Register</button>
+            <button className="signup-submit-btn" onClick={handleFinish}>
+            {isClicked ? <FontAwesomeIcon icon={faSpinner} spin /> : null}{" "} Register
+            </button>
             <span className="not-member">
-              already registered? <i onClick={() =>{setLogin(true)}}>login now</i>{" "}
+              already registered?{" "}
+              <i
+                onClick={() => {
+                  setIsClicked(false);
+                  setLogin(true);
+                }}
+              >
+                login now
+              </i>{" "}
             </span>
           </form>
         )}

@@ -99,7 +99,8 @@ function Navigation() {
             }}
           >
             <div className="user-img-cont">
-              <img src={user ? user_img : company_img } alt="" />
+              <p>{user ? user.username : company.companyname }</p>
+              <img src={user? user_img: company_img} alt="" />
               <FontAwesomeIcon icon={faCaretDown} />
             </div>
             {isHover ? (
